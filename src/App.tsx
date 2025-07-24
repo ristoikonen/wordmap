@@ -8,16 +8,8 @@ import { stopWords } from './assets/stopwords.fixture';
 import './App.css'
 
 // Pasted text shows up here!
-export const sampleLyrics = `Pasted text showing here!`;
-/* Got a wife and kids in Baltimore, Jack
-I went out for a ride and I never went back
-Like a river that don't know where it's flowing
-I took a wrong turn and I just kept going
-I met her in a Kingstown bar
-We fell in love, I knew it had to end
-We took what we had and we ripped it apart
-Now here I am down in Kingstown again`;
- */
+const sampleLyrics = `Pasted text showing here!`;
+
 /*
 interface ExampleProps {
   width: number;
@@ -59,8 +51,21 @@ let words = wordFreq(sampleLyrics);
 
 const fontScale = scaleLog({
   domain: [Math.min(...words.map((w) => w.value)), Math.max(...words.map((w) => w.value))],
-  range: [20, 100],
+  range: [10, 100],
 });
+
+//:number[]
+function getScale(wordsdata:WordData[]) {
+
+  return scaleLog({
+    domain: [Math.min(...wordsdata.map((w) => w.value)), Math.max(...wordsdata.map((w) => w.value))],
+    range: [10, 100],
+  });
+
+
+}
+
+
 
 //TODO" continue..
 //function fontScaler(dx:WordData){   return fontScale(dx.value); // Use the fontScale to map values to font sizes }
@@ -110,7 +115,7 @@ function App() {
             style={{ width: '60%', height: '40px', opacity: 20, textAlign: 'center' }} 
             onPaste={handlePaste}
             value={inputValue} // This keeps the input visually empty or controlled
-            placeholder="Paste or type text like lyrics here. Text will be hidden."
+            placeholder="Paste or type text here. Text will be hidden."
             onChange={(e) => setInputValue(e.target.value)} // Allows typing if needed
           />
 
@@ -120,9 +125,9 @@ function App() {
         words={wordDataArray}
         width={width}
         height={height}
-        fontSize={fontSizeSetter}
+        fontSize={fontSizeSetter}  //getScale(wordDataArray)
         font={'Impact'}
-        padding={16}
+        padding={8}
         spiral={spiralType}
         rotate={withRotation ? getRotationDegree : 0}
         random={fixedValueGenerator}
