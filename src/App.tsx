@@ -54,16 +54,16 @@ const fontScale = scaleLog({
   range: [10, 100],
 });
 
-//:number[]
+// TODO: Create functions instad of consts
+/*
 function getScale(wordsdata:WordData[]) {
 
   return scaleLog({
     domain: [Math.min(...wordsdata.map((w) => w.value)), Math.max(...wordsdata.map((w) => w.value))],
     range: [10, 100],
   });
-
-
 }
+*/
 
 
 
